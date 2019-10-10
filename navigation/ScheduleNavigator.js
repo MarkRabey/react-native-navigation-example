@@ -1,5 +1,6 @@
 import { createStackNavigator } from 'react-navigation-stack';
-import { ScheduleList, ScheduleDetails } from '../screens/schedule';
+import { ScheduleList } from '../screens/schedule';
+import { ScheduleDetails } from '../screens/ScheduleDetails';
 
 export const ScheduleNavigator = createStackNavigator({
   ScheduleList,

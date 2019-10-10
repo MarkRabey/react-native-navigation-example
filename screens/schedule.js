@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
+import { IconButton } from '../component/Button';
 
 export const ScheduleList = (props) => {
   return (
@@ -13,14 +14,14 @@ export const ScheduleList = (props) => {
   );
 }
 
-ScheduleList.navigationOptions = {
-  title: 'Schedules'
-}
-
-export const ScheduleDetails = (props) => {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Schedule Details</Text>
-    </View>
-  );
+ScheduleList.navigationOptions = ({ navigation }) => {
+  return {
+    title: 'Schedules',
+    headerLeft: (
+      <IconButton
+        name="menu"
+        style={{ paddingLeft: 12 }}
+        onPress={ () => navigation.openDrawer() } />
+    )
+  };
 }

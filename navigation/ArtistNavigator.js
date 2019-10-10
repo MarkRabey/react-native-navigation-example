@@ -1,5 +1,6 @@
 import { createStackNavigator } from 'react-navigation-stack';
-import { ArtistList, ArtistDetails } from '../screens/artists';
+import { ArtistList } from '../screens/Artists';
+import { ArtistDetails } from '../screens/ArtistDetails';
 
 export const ArtistNavigator = createStackNavigator({
   ArtistList,
