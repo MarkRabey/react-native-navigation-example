@@ -1,11 +1,30 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+} from 'react-native';
+import themeVariables from '../theme/variables';
 
-export const IconButton = ({ name, ...props }) => {
+export const Button = props => {
   return (
-    <TouchableOpacity { ...props }>
-      <MaterialIcons name={ name } size={ 32 } />
-    </TouchableOpacity>
-  )
+    <View style={ styles.container }>
+      <TouchableOpacity onPress={ props.onPress }>
+        <Text style={ styles.title }>{ props.title }</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: themeVariables.primary,
+    padding: 12,
+  },
+  title: {
+    color: '#fff',
+    fontSize: 36,
+    fontWeight: '900'
+  },
+});

@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
-import { IconButton } from '../component/Button';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+} from 'react-native';
+import { Container } from '../component/Container';
+import { IconButton } from '../component/IconButton';
+import { Button } from '../component/Button';
+import { HeaderTitle } from '../component/HeaderTitle';
+import { ListItem } from '../component/ListItem';
 
 export const ArtistList = (props) => {
   const [artists, setArtists] = useState([]);
@@ -13,34 +22,38 @@ export const ArtistList = (props) => {
           setArtists(data);
         })
     }
-  })
+  });
   
   return (
-    <View style={ styles.container }>
-      <Text style={ styles.text }>Artist List</Text>
-      <Button
+    <Container>
+      <HeaderTitle title="Artist List" />
+      <FlatList
+        data={ artists }
+        keyExtractor={ (item, index) => `item-${ index }`}
+        renderItem={ ({ item }) => (
+          <ListItem
+            { ...item }
+            onPress={() => {
+              props.navigation.navigate('ArtistDetails', { artist: item })
+            }}
+          />
+        ) }
+      />
+      {/* <Button
         title="Go to Details"
+
         onPress={ () => props.navigation.navigate('ArtistDetails', {
           artist: {
             name: 'An artist',
             bio: 'artist bio',
           }
         })}
-      />
-    </View>
+      /> */}
+    </Container>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    fontSize: 24
-  }
-})
+
 
 ArtistList.navigationOptions = ({ navigation }) => {
   return {

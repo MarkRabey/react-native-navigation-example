@@ -1,14 +1,20 @@
 import React from 'react';
+import { View, Text, Image } from 'react-native';
+import { Container } from '../component/Container';
 
 export const ArtistDetails = (props) => {
   const artist = props.navigation.getParam('artist');
-  
+
   if (artist) {
     return (
-      <View>
+      <Container>
+        <Image
+          source= {{ uri: artist.image }}
+          style={{ width: 4, height: 200 }}
+        />
         <Text>{ artist.name }</Text>
         <Text>{ artist.bio }</Text>
-      </View>
+      </Container>
     );
   }
 
@@ -30,9 +36,3 @@ ArtistDetails.navigationOptions = ({ navigation }) => {
     headerTintColor: '#fff',
   }
 };
-
-ArtistDetails.navigationOptions = ({ navigation }) => {
-  return {
-    title: 'Artists',
-  }
-}
