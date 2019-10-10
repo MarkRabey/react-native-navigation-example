@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { IconButton } from '../component/Button';
 
 export const ArtistList = (props) => {
+  const [artists, setArtists] = useState([]);
+
+  useEffect(() => {
+    if (artists.length === 0) {
+      fetch('https://thawing-hollows-21222.herokuapp.com/artists')
+        .then(res => res.json())
+        .then(({data}) => {
+          setArtists(data);
+        })
+    }
+  })
+  
   return (
     <View style={ styles.container }>
       <Text style={ styles.text }>Artist List</Text>
